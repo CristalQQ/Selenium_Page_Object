@@ -6,7 +6,6 @@ from .pages.product_page import ProductPage
                                           pytest.param(
                                               '7', marks=pytest.mark.xfail),
                                           '8', '9'])
-@pytest.mark.skip
 def test_guest_can_add_product_to_basket(driver, offer_number):
     link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{
         offer_number}'
@@ -15,6 +14,22 @@ def test_guest_can_add_product_to_basket(driver, offer_number):
     page.add_to_cart()
     page.solve_quiz_and_get_code()
     page.check_product_added()
+
+
+@pytest.mark.new
+def test_guest_should_see_login_link_on_product_page(driver):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(driver, link)
+    page.open()
+    page.should_be_login_link()
+
+
+@pytest.mark.new
+def test_guest_can_go_to_login_page_from_product_page(driver):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(driver, link)
+    page.open()
+    page.go_to_login_page()
 
 
 # Negative checks

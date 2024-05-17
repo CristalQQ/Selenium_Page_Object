@@ -1,9 +1,10 @@
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
-import math
-from selenium.common.exceptions import NoAlertPresentException
 import time
+import math
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from .locators import BasePageLocators
 
 
 class BasePage:
@@ -21,6 +22,13 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
+
+    def go_to_login_page(self):
+        self.driver.find_element(*BasePageLocators.LOGIN_LINK).click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(
+            *BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
     # The element does not appear on the page for the specified time
     def is_not_element_present(self, how, what, timeout=4):
