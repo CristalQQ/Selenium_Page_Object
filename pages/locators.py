@@ -20,6 +20,12 @@ class ProductPageLocators:
     PRICE_BOOK_IN_NOTIFICATION = (By.XPATH, "(//p/strong)[2]")
 
 
-class BasePageLocators():
+class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_LINK = (By.XPATH, "//a[@class='btn btn-default']")
+
+
+class BasketPageLocators:
+    BASKET_ITEMS = (By.XPATH, "//div[@class='basket-items']")
+    BASKET_MESSAGE = (By.XPATH, "//div[@id='content_inner']/p")
