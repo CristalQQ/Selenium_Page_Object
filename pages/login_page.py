@@ -12,7 +12,9 @@ class LoginPage(BasePage):
         assert 'login' in self.driver.current_url, "The substring 'login' is missing in the current url"
 
     def should_be_login_form(self):
-        assert self.driver.find_element(*LoginPageLocators.LOGIN_FORM), "The login form was not found"
+        assert self.is_element_present(
+            *LoginPageLocators.LOGIN_FORM), "The login form was not found"
 
     def should_be_register_form(self):
-        assert self.driver.find_element(*LoginPageLocators.REGISTER_FORM), "The registration form was not found"
+        assert self.is_element_present(
+            *LoginPageLocators.REGISTER_FORM), "The registration form was not found"

@@ -1,4 +1,3 @@
-import time
 import math
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.common.exceptions import NoAlertPresentException
@@ -60,11 +59,9 @@ class BasePage:
         alert.send_keys(answer)
         alert.accept()
         try:
-            time.sleep(3)
             alert = self.driver.switch_to.alert
             alert_text = alert.text
             print(f"Your code: {alert_text}")
             alert.accept()
-            time.sleep(3)
         except NoAlertPresentException:
             print("No second alert presented")
